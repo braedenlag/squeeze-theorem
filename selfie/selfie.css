@@ -18,3 +18,7 @@ body, html {
     border: 5px solid white;
     width: 30%
 }
+
+#cameraView {
+    display:none;
+}
