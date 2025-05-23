@@ -1,24 +1,61 @@
 body, html {
     margin: 0;
     padding: 0;
+    background: #181818;
 }
 
+h1 {
+    text-align: center;
+}
 #selfie-gif {
     background: #181818;
     color: white;
+    padding: 5em 0 5em 0;
     width: 100%;
-    padding: 5em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
+.column {
+    float: left;
+    width: 33.33%;
+    display:block;
+}
+
+
+
 #selfieGIF {
-    border: 5px solid white;
-    width: 30%
+    position: relative;
+    z-index: 0;
+}
+
+#selfieOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+canvas {
+    width: 100%;
+}
+
+#canvas-container {
+    position:relative;
+    margin-bottom: 5em;
 }
 
 #cameraView {
     display:none;
+    position: absolute;
+}
+
+#startSelfie {
+    width: 20em;
+    padding: 1em;
+    font-size: 2em;
+    margin: auto;
+    display: block;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    border: 5px solid white;
+    border-radius: 50px;
 }

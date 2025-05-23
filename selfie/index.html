@@ -5,12 +5,29 @@
     <link rel="stylesheet" href="selfie.css">
     <title>Selfie Maker</title>
     <script src="selfie.js"></script>
+    <script src="gif.js"></script>
+    <script src="gif.worker.js"></script>
+    <script src="https://kit.fontawesome.com/0472370c81.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="selfie-gif">
         <h1>Create a Selfie GIF</h1>
-        <canvas id="selfieGIF" width="450" height="450"></canvas>
+        <div class="row">
+            <div class="column">&nbsp;</div>
+            <div class="column">
+                &nbsp;
+                <div id="canvas-container">
+                    <canvas id="selfieGIF" width="450" height="450"></canvas>
+                    <canvas id="selfieOverlay" width="450" height="450"></canvas>
+                </div>
+                <button id="startSelfie"><i class="fa-solid fa-camera"></i> Start</button>
+            </div>
+            <div class="column">
+                &nbsp;
+            </div>
+        </div>
         <video id="cameraView"></video>
+        
     </div>
 </body>
 </html>
