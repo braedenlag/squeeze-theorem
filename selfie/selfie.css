@@ -21,11 +21,21 @@ h1 {
     display:block;
 }
 
-
-
 #selfieGIF {
     position: relative;
     z-index: 0;
+}
+
+#selfieGIF[data-processing=true] {
+    content: "test";
+    filter: brightness(0.5);
+}
+
+#loading {
+    --fa-animation-duration: 2s;
+    font-size: 5em;
+    width:auto;
+    z-index: 3;
 }
 
 #selfieOverlay {
@@ -54,6 +64,29 @@ canvas {
     width: 100%;
 }
 
+#loadingcontainer, #no-camera {
+    width: 100%;
+    margin-top: -1.2rem;
+    padding: 0;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    aspect-ratio: 1;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#no-camera {
+    color: rgb(32, 32, 32);
+    font-size: 10em;
+    z-index: -1;
+}
+
 #canvas-container {
     position:relative;
     margin-bottom: 5em;
@@ -64,21 +97,70 @@ canvas {
     position: absolute;
 }
 
-#startSelfie {
-    width: 6rem;
+#buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+}
+
+#buttons button, #buttons a {
     padding: 1rem;
     font-size: 1.2rem;
-    margin: auto;
     display: block;
     cursor: pointer;
     color: white;
+    font-family: "formiga";
     background-color: black;
     border: 5px solid white;
     border-radius: 50px;
+    text-decoration: none;
+    transition: 0.2s;
 }
 
-@media only screen and (max-width: 767px) {
+#buttons [data-disabled="true"] {
+    cursor:not-allowed;
+    background-color:#333333;
+    color: #cacaca;
+    border-color: #cacaca;
+}
+
+#buttons [data-disabled="true"]:hover {
+    cursor:not-allowed;
+    background-color:#333333;
+    color: #cacaca;
+    border-color: #cacaca;
+}
+
+#buttons a[href]:hover {
+    background-color: rgb(95, 255, 95);
+    color: #616161;
+}
+
+#startSelfie:hover {
+    background-color: rgb(255, 79, 79);
+}
+
+@media only screen and (max-width: 800px) {
     .column {
         width: 100%;
+    }
+
+    #canvas-container {
+        margin-bottom: 5rem;
+    }
+
+    .mobile-hide {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
+    .mobile-hide {
+        display:none;
+    }
+    .column {
+        width: 80%;
+        padding: 10%;
     }
 }

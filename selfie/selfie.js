@@ -13,17 +13,22 @@ selfie.startup = () => {
 
     selfie.gif = new GIF({
         workers: 10,
-        quality: 1000,
+        quality: 300,
         width: 450,
         height: 450,
-        transparent: 'rgba(0, 0, 0, 0)',
+        transparent: 'rgba(255, 0, 255, 0)',
         dither: 'Atkinson',
         worker: 'gif.worker.js'
     });
     selfie.gif.on('finished', function(blob) {
         selfie.result.src = (URL.createObjectURL(blob));
+        document.getElementById("downloadLink").href = selfie.result.src;
+        document.getElementById("downloadLink").setAttribute("data-disabled", "false");
+        document.getElementById("startSelfie").setAttribute("data-disabled", "false");
         selfie.ctx.clearRect(0, 0, selfie.canvas.width, selfie.canvas.height);
         selfie.octx.clearRect(0, 0, selfie.overlay.width, selfie.overlay.height);
+        selfie.canvas.setAttribute("data-processing", "false");
+        document.getElementById("loadingcontainer").style.visibility = "hidden";
         //mark render as finished so it can properly run again
         selfie.gif.running = false;
         selfie.gif.frames = [];
@@ -34,7 +39,6 @@ selfie.startup = () => {
 }
 
 selfie.getCamera = () => {
-    
     if(selfie.recording) return;
     navigator.mediaDevices
     .getUserMedia({ video: true, audio: false })
@@ -56,6 +60,9 @@ selfie.removeCamera = () => {
 }
 
 selfie.startCountdown = () => {
+    document.getElementById("downloadLink").removeAttribute("href");
+    document.getElementById("downloadLink").setAttribute("data-disabled", "true");
+    document.getElementById("startSelfie").setAttribute("data-disabled", "true");
     selfie.recording = true;
     clearInterval(selfie.interval)
     selfie.interval = setInterval(selfie.drawFrame, selfie.delay);
@@ -101,6 +108,8 @@ selfie.drawFrame = () => {
         selfie.octx.closePath();
 
         if(selfie.frame >= selfie.gifLength) {
+            selfie.canvas.setAttribute("data-processing", "true");
+            document.getElementById("loadingcontainer").style.visibility = "visible";
             selfie.gif.render();
             clearInterval(selfie.interval);
             selfie.frame = 0;

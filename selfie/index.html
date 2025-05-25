@@ -12,19 +12,24 @@
 </head>
 <body>
     <div id="selfie-gif">
-        <h1>create a "selfie gif"</h1>
+        <h1>create a selfie gif</h1>
         <div class="row">
-            <div class="column">&nbsp;</div>
+            <div class="column mobile-hide">&nbsp;</div>
             <div class="column">
                 &nbsp;
                 <div id="canvas-container">
                     <img id="selfieResult" src="" width="450" height="450">
-                    <canvas id="selfieGIF" width="450" height="450"></canvas>
+                    <div width="450" height="450" id="no-camera"><i class="fa-solid fa-camera-retro background"></i></div>
+                    <div width="450" height="450" id="loadingcontainer" style="visibility: hidden;"><i class="fa-solid fa-sync fa-spin" id="loading"></i></div>
+                    <canvas id="selfieGIF" width="450" height="450" data-processing=false></canvas>
                     <canvas id="selfieOverlay" width="450" height="450"></canvas>
                 </div>
-                <button id="startSelfie"><i class="fa-solid fa-camera"></i> Start</button>
+                <div id="buttons">
+                    <button id="startSelfie" data-disabled="false"><i class="fa-solid fa-camera"></i> start</button>
+                    <a download id="downloadLink" data-disabled="true"><i class="fa-solid fa-download"></i> download</a>
+                </div>
             </div>
-            <div class="column">
+            <div class="column mobile-hide">
                 &nbsp;
             </div>
         </div>
