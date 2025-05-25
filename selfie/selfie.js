@@ -1,4 +1,5 @@
 const selfie = {};
+
 selfie.startup = () => {
     selfie.video = document.getElementById("cameraView");
     selfie.result = document.getElementById("selfieResult");
@@ -6,6 +7,9 @@ selfie.startup = () => {
     selfie.ctx = selfie.canvas.getContext("2d", { willReadFrequently: true });
     selfie.overlay = document.getElementById("selfieOverlay");
     selfie.octx = selfie.overlay.getContext("2d", { willReadFrequently: true });
+    selfie.timeout = 3000;
+    selfie.timeoutStart;
+    document.getElementById("stopSelfie").onclick = selfie.removeCamera;
     
     selfie.frame = 0;
     selfie.gifLength = 31; //number of frames
@@ -16,7 +20,8 @@ selfie.startup = () => {
         quality: 300,
         width: 450,
         height: 450,
-        transparent: 'rgba(255, 0, 255, 0)',
+        dispose: 2,
+        transparent: "#FFFFFF",
         dither: 'Atkinson',
         worker: 'gif.worker.js'
     });
@@ -40,6 +45,7 @@ selfie.startup = () => {
 
 selfie.getCamera = () => {
     if(selfie.recording) return;
+    document.getElementById("stopSelfie").setAttribute("data-disabled", "false")
     navigator.mediaDevices
     .getUserMedia({ video: true, audio: false })
     .then((stream) => {
@@ -54,16 +60,21 @@ selfie.getCamera = () => {
 }
 
 selfie.removeCamera = () => {
+    if(document.getElementById("stopSelfie").getAttribute("data-disabled") == "true") return;
     selfie.video.srcObject.getTracks().forEach(function(track) {
         track.stop();
     });
+    document.getElementById("stopSelfie").setAttribute("data-disabled", "true")
 }
 
 selfie.startCountdown = () => {
     document.getElementById("downloadLink").removeAttribute("href");
     document.getElementById("downloadLink").setAttribute("data-disabled", "true");
     document.getElementById("startSelfie").setAttribute("data-disabled", "true");
-    selfie.recording = true;
+    document.getElementById("stopSelfie").setAttribute("data-disabled", "true");
+    selfie.timeout = 3000 + selfie.delay;
+    selfie.timeoutStart = performance.now();
+    selfie.canvas.setAttribute("data-processing", "true");
     clearInterval(selfie.interval)
     selfie.interval = setInterval(selfie.drawFrame, selfie.delay);
 }
@@ -72,6 +83,20 @@ selfie.drawFrame = () => {
     const video = selfie.video
     const ctx = selfie.ctx;
     const canvas = selfie.canvas;
+
+    if(selfie.timeout > 0) {
+        selfie.timeout -= selfie.delay;
+        selfie.octx.clearRect(0, 0, selfie.overlay.width, selfie.overlay.height);
+        selfie.octx.font = "100px formiga";
+        selfie.octx.fillStyle = "white";
+        selfie.octx.fillText(Math.round(selfie.timeout / 1000), selfie.overlay.width / 2 - 30, selfie.overlay.height / 2 + 30);
+
+        if(selfie.timeout <= 0) {
+            selfie.recording = true;
+            selfie.octx.clearRect(0, 0, selfie.overlay.width, selfie.overlay.height);
+            selfie.canvas.setAttribute("data-processing", "false");
+        }
+    }
 
     selfie.result.src = "";
 
@@ -109,6 +134,7 @@ selfie.drawFrame = () => {
 
         if(selfie.frame >= selfie.gifLength) {
             selfie.canvas.setAttribute("data-processing", "true");
+            document.getElementById("stopSelfie").setAttribute("data-disabled", "false");
             document.getElementById("loadingcontainer").style.visibility = "visible";
             selfie.gif.render();
             clearInterval(selfie.interval);

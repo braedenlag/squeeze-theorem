@@ -100,16 +100,19 @@ canvas {
 #buttons {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 1em;
     justify-content: center;
 }
 
 #buttons button, #buttons a {
     padding: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.1em;
     display: block;
     cursor: pointer;
     color: white;
+    text-align: center;
+    white-space: nowrap;
     font-family: "formiga";
     background-color: black;
     border: 5px solid white;
