@@ -119,7 +119,7 @@ selfie.grayscale = () => {
     for(let i = 0; i < selfie.originalGif.frames.length; i++)
     {
         let data = new Uint8ClampedArray(selfie.originalGif.frames[i].data);
-        for (let j = 0; i < data.length; j += 4) {
+        for (let j = 0; j < data.length; j += 4) {
             let gray = (data[j] + data[j+1] + data[j+2]) / 3
             data[j] = gray; // red
             data[j + 1] = gray; // green
