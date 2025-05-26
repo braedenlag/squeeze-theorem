@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="selfie.css">
+    <link rel="stylesheet" href="/header.css">
     <title>Selfie Maker</title>
     <script src="selfie.js"></script>
     <script src="gif.js"></script>
@@ -11,6 +12,10 @@
     <link rel="stylesheet" href="https://use.typekit.net/uxk1eyb.css">
 </head>
 <body>
+    <!-- <header>
+        <div class="left"><img src="/logo.svg"></div>
+        <div class="right"><p>history</p><p>recipies</p></div>
+    </header> -->
     <div id="selfie-gif">
         <h1>create a selfie gif</h1>
         <div class="row">
@@ -24,15 +29,21 @@
                     <canvas id="selfieGIF" width="450" height="450" data-processing=false></canvas>
                     <canvas id="selfieOverlay" width="450" height="450"></canvas>
                 </div>
-                <div id="buttons">
-                    <button id="startSelfie" data-disabled="false"><i class="fa-solid fa-camera"></i> start</button>
-                    <a download id="downloadLink" data-disabled="true"><i class="fa-solid fa-download"></i> download</a>
-                    <button id="stopSelfie" data-disabled="true"><i class="fa-solid fa-xmark"></i> turn off camera</button>
-                </div>
             </div>
             <div class="column mobile-hide">
                 &nbsp;
             </div>
+        </div>
+        <div id="buttons">
+            <button id="startSelfie" data-disabled="false"><i class="fa-solid fa-camera"></i> start</button>
+            <a download id="downloadLink" data-disabled="true"><i class="fa-solid fa-download"></i> download</a>
+            <select name="filter" id="selfie-filter" disabled>
+                <option value="no-filter">&#xf03e; no filter</option>
+                <option value="grayscale">&#xf008; grayscale</option>
+                <option value="night-vision">&#xf186; night vision</option>
+                <option value="invert">&#xf042; invert</option>
+            </select>
+            <button id="stopSelfie" data-disabled="true"><i class="fa-solid fa-xmark"></i> camera off</button>
         </div>
         <video id="cameraView"></video>
     </div>

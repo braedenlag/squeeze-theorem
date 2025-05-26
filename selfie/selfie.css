@@ -1,7 +1,7 @@
 body, html {
-    margin: 0;
     padding: 0;
-    background: #181818;
+    margin: 0em;
+    background: #e0e0e0;
 }
 
 h1 {
@@ -10,12 +10,15 @@ h1 {
 }
 
 #selfie-gif {
-    padding: 1em;
+    padding-bottom: 3em;
     background: #181818;
     color: white;
     overflow: auto;
-    padding: 0;
     width: 100%;
+
+    .row {
+        overflow: hidden;
+    }
 
     .column {
         float: left;
@@ -102,18 +105,21 @@ h1 {
         display: flex;
         flex-flow: row wrap;
         gap: 1em;
+        padding: 0.5em;
         justify-content: center;
     }
 
-    #buttons button, #buttons a {
+    #buttons button, #buttons a, #buttons select, #buttons select option {
+        appearance: none;
         padding: 1rem;
         font-size: 1.1em;
         display: block;
         cursor: pointer;
         color: white;
+        font-weight: 900;
         text-align: center;
         white-space: nowrap;
-        font-family: formiga, sans-serif;
+        font-family: formiga, "Font Awesome 6 Free", sans-serif;
         background-color: black;
         border: 5px solid white;
         border-radius: 50px;
@@ -121,7 +127,8 @@ h1 {
         transition: 0.2s;
     }
 
-    #buttons [data-disabled="true"], #buttons [data-disabled="true"]:hover {
+    #buttons [data-disabled="true"], #buttons [data-disabled="true"]:hover, #buttons [disabled], #buttons [disabled]:hover {
+        opacity: 1;
         cursor:not-allowed;
         background-color:#333;
         color: #cacaca;
@@ -137,6 +144,10 @@ h1 {
     }
 
     #stopSelfie:hover {
+        background-color: rgb(155, 137, 58);
+    }
+
+    #selfie-filter:hover, #selfie-filter:active, #selfie-filter:focus {
         background-color: rgb(36 53 110);
     }
 

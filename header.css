@@ -1,0 +1,37 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    flex-grow: 1;
+    font-size: 1.2em;
+    font-family: formiga, sans-serif;
+    background: #e4e3e3;
+    padding: 0.2em;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+
+    img {
+        height: 2em;
+        filter: drop-shadow(2px 2px 1px #888);
+    }
+
+    .left, .right {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .left {
+        justify-content: left;
+    }
+    .right {
+        justify-content: right;
+        gap: 1em;
+    }
+}
