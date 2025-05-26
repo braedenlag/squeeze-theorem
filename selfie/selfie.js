@@ -7,7 +7,6 @@ selfie.startup = () => {
     selfie.ctx = selfie.canvas.getContext("2d", { willReadFrequently: true });
     selfie.overlay = document.getElementById("selfieOverlay");
     selfie.octx = selfie.overlay.getContext("2d", { willReadFrequently: true });
-    selfie.timeout = 3000;
     selfie.timeoutStart;
     document.getElementById("stopSelfie").onclick = selfie.removeCamera;
     
@@ -21,7 +20,6 @@ selfie.startup = () => {
         width: 450,
         height: 450,
         dispose: 2,
-        transparent: "#FFFFFF",
         dither: 'Atkinson',
         worker: 'gif.worker.js'
     });
@@ -45,7 +43,6 @@ selfie.startup = () => {
 
 selfie.getCamera = () => {
     if(selfie.recording) return;
-    document.getElementById("stopSelfie").setAttribute("data-disabled", "false")
     navigator.mediaDevices
     .getUserMedia({ video: true, audio: false })
     .then((stream) => {
@@ -68,11 +65,12 @@ selfie.removeCamera = () => {
 }
 
 selfie.startCountdown = () => {
+    selfie.timeout = 3000;
     document.getElementById("downloadLink").removeAttribute("href");
     document.getElementById("downloadLink").setAttribute("data-disabled", "true");
     document.getElementById("startSelfie").setAttribute("data-disabled", "true");
     document.getElementById("stopSelfie").setAttribute("data-disabled", "true");
-    selfie.timeout = 3000 + selfie.delay;
+    selfie.timeout += selfie.delay;
     selfie.timeoutStart = performance.now();
     selfie.canvas.setAttribute("data-processing", "true");
     clearInterval(selfie.interval)
@@ -89,7 +87,10 @@ selfie.drawFrame = () => {
         selfie.octx.clearRect(0, 0, selfie.overlay.width, selfie.overlay.height);
         selfie.octx.font = "100px formiga";
         selfie.octx.fillStyle = "white";
-        selfie.octx.fillText(Math.round(selfie.timeout / 1000), selfie.overlay.width / 2 - 30, selfie.overlay.height / 2 + 30);
+        selfie.octx.textAlign = "center";
+        selfie.octx.textBaseline = "middle";
+        selfie.result.src = ""
+        selfie.octx.fillText(Math.ceil(selfie.timeout / 1000), selfie.overlay.width / 2, selfie.overlay.height / 2);
 
         if(selfie.timeout <= 0) {
             selfie.recording = true;
@@ -97,8 +98,6 @@ selfie.drawFrame = () => {
             selfie.canvas.setAttribute("data-processing", "false");
         }
     }
-
-    selfie.result.src = "";
 
     if(video.videoWidth > video.videoHeight) {
         //keep height same, center horizontally
