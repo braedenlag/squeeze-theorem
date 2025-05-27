@@ -8,6 +8,7 @@ selfie.startup = () => {
     selfie.overlay = document.getElementById("selfieOverlay");
     selfie.octx = selfie.overlay.getContext("2d", { willReadFrequently: true });
     document.getElementById("stopSelfie").onclick = selfie.removeCamera;
+    document.getElementById("downloadLink").onclick = selfie.saveFileAs;
     
     selfie.frame = 0;
     selfie.gifLength = 31; //number of frames
@@ -24,13 +25,17 @@ selfie.startup = () => {
     });
     
     selfie.originalGif = {};
+    selfie.blob;
 
     selfie.gif.on('finished', function(blob) {
+        selfie.blob = blob;
         selfie.result.src = (URL.createObjectURL(blob));
         document.getElementById("downloadLink").href = selfie.result.src;
-        document.getElementById("downloadLink").setAttribute("data-disabled", "false");
-        document.getElementById("startSelfie").setAttribute("data-disabled", "false");
+
+        document.getElementById("downloadLink").disabled = false;
+        document.getElementById("startSelfie").disabled = false;
         document.getElementById("selfie-filter").disabled = false;
+
         selfie.ctx.clearRect(0, 0, selfie.canvas.width, selfie.canvas.height);
         selfie.octx.clearRect(0, 0, selfie.overlay.width, selfie.overlay.height);
         selfie.canvas.setAttribute("data-processing", "false");
@@ -51,10 +56,41 @@ selfie.startup = () => {
         if (select) {
             for (let option of select.options) {
             // Remove Font Awesome Unicode characters (e.g. \f0a4)
-            option.text =  '\u{1F53E} ' + option.text.replace(/[\uf000-\uf8ff]/g, '').trim();
+            option.text =  '\u{272A} ' + option.text.replace(/[\uf000-\uf8ff]/g, '').trim();
             }
         }
     }
+}
+
+selfie.saveFileAs = () => {
+    try {
+        const file = new File([selfie.blob], `${crypto.randomUUID().split("-")[0]}.gif`, {type: 'image/gif'}); //randomly generate file name
+        if(selfie.isMobile() && navigator.canShare && navigator.canShare({files: [file]})) {
+            navigator.share({
+                files: [file],
+                title: "squeezetheorem.com",
+                text: "I made a selfie GIF!"
+            });
+        } else {
+            selfie.downloadFile();
+        }
+    } catch(err) {
+        console.error(err);
+        selfie.downloadFile();
+    }
+}
+
+selfie.downloadFile = () => {
+    const a = document.createElement('a');
+    a.href = selfie.result.src;
+    a.download = `${crypto.randomUUID().split("-")[0]}.gif`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+selfie.isMobile = () => {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
 selfie.getCamera = () => {
@@ -73,11 +109,11 @@ selfie.getCamera = () => {
 }
 
 selfie.removeCamera = () => {
-    if(document.getElementById("stopSelfie").getAttribute("data-disabled") == "true") return;
+    if(document.getElementById("stopSelfie").disabled) return;
     selfie.video.srcObject.getTracks().forEach(function(track) {
         track.stop();
     });
-    document.getElementById("stopSelfie").setAttribute("data-disabled", "true")
+    document.getElementById("stopSelfie").disabled = true;
 }
 
 selfie.startCountdown = () => {
@@ -87,9 +123,9 @@ selfie.startCountdown = () => {
     selfie.originalGif.frames = [];
 
     document.getElementById("downloadLink").removeAttribute("href");
-    document.getElementById("downloadLink").setAttribute("data-disabled", "true");
-    document.getElementById("startSelfie").setAttribute("data-disabled", "true");
-    document.getElementById("stopSelfie").setAttribute("data-disabled", "true");
+    document.getElementById("downloadLink").disabled = true;;
+    document.getElementById("startSelfie").disabled = true;
+    document.getElementById("stopSelfie").disabled = true;
     document.getElementById("selfie-filter").disabled = true;
     selfie.canvas.setAttribute("data-processing", "true");
     selfie.timeout += selfie.delay;
@@ -247,7 +283,7 @@ selfie.doRender = () => {
     selfie.result.src = "";
     selfie.canvas.setAttribute("data-processing", "true");
     document.getElementById("selfie-filter").disabled = true;
-    document.getElementById("stopSelfie").setAttribute("data-disabled", "false");
+    document.getElementById("stopSelfie").disabled = false;
     document.getElementById("loadingcontainer").style.visibility = "visible";
     selfie.applyFilter();
     selfie.gif.render();
