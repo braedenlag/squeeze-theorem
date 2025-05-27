@@ -7,7 +7,6 @@ selfie.startup = () => {
     selfie.ctx = selfie.canvas.getContext("2d", { willReadFrequently: true });
     selfie.overlay = document.getElementById("selfieOverlay");
     selfie.octx = selfie.overlay.getContext("2d", { willReadFrequently: true });
-    selfie.timeoutStart;
     document.getElementById("stopSelfie").onclick = selfie.removeCamera;
     
     selfie.frame = 0;
@@ -46,6 +45,16 @@ selfie.startup = () => {
         if(document.getElementById("selfieResult").src == "") return;
         selfie.doRender();
     }
+
+    if (window.innerWidth <= 768) {
+        const select = document.querySelector('select');
+        if (select) {
+            for (let option of select.options) {
+            // Remove Font Awesome Unicode characters (e.g. \f0a4)
+            option.text =  '\u{1F53E} ' + option.text.replace(/[\uf000-\uf8ff]/g, '').trim();
+            }
+        }
+    }
 }
 
 selfie.getCamera = () => {
@@ -82,9 +91,8 @@ selfie.startCountdown = () => {
     document.getElementById("startSelfie").setAttribute("data-disabled", "true");
     document.getElementById("stopSelfie").setAttribute("data-disabled", "true");
     document.getElementById("selfie-filter").disabled = true;
-    selfie.timeout += selfie.delay;
-    selfie.timeoutStart = performance.now();
     selfie.canvas.setAttribute("data-processing", "true");
+    selfie.timeout += selfie.delay;
     clearInterval(selfie.interval)
     selfie.interval = setInterval(selfie.drawFrame, selfie.delay);
 }
@@ -103,6 +111,9 @@ selfie.applyFilter = () => {
             break;
         case "invert":
             selfie.invert();
+            break;
+        case "upside-down":
+            selfie.upsideDown();
             break;
     }
 }
@@ -151,6 +162,20 @@ selfie.invert = () => {
             data[j] = 255 - data[j]; // red
             data[j + 1] = 255 - data[j + 1]; // green
             data[j + 2] = 255 - data[j + 2]; // blue
+        }
+        selfie.gif.frames[i].data = new Uint8ClampedArray(data);;
+    }
+}
+
+selfie.upsideDown = () => {
+    for(let i = 0; i < selfie.originalGif.frames.length; i++)
+    {
+        let data = new Uint8ClampedArray(selfie.originalGif.frames[i].data);
+        let oldData = new Uint8ClampedArray(selfie.originalGif.frames[i].data);
+        for (let j = 0; j < data.length; j += 4) {
+            data[j] = oldData[data.length - j - 4]; // red
+            data[j + 1] = oldData[data.length - j - 3]; // green
+            data[j + 2] = oldData[data.length - j - 2]; // blue
         }
         selfie.gif.frames[i].data = new Uint8ClampedArray(data);;
     }

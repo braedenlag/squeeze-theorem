@@ -24,6 +24,7 @@ h1 {
         float: left;
         width: 33.33%;
         display:block;
+        box-sizing: border-box;
     }
 
     canvas {
@@ -107,6 +108,7 @@ h1 {
         gap: 1em;
         padding: 0.5em;
         justify-content: center;
+        align-items: center;
     }
 
     #buttons button, #buttons a, #buttons select, #buttons select option {
@@ -151,10 +153,14 @@ h1 {
         background-color: rgb(36 53 110);
     }
 
+    .mobile-select {
+        display: none;
+    }
 
     @media only screen and (width <= 800px) {
         .column {
             width: 100%;
+            padding: 1em;
         }
 
         #canvas-container {
@@ -166,14 +172,14 @@ h1 {
         }
     }
 
-    @media only screen and (width >= 800px) and (width <= 1200px) {
+    @media only screen and (width >= 800px) and (width <= 1200px) and (height >= 800px) {
         .mobile-hide {
             display:none;
         }
 
         .column {
-            width: 80%;
-            padding: 10%;
+            width: 100%;
+            padding: 5em;
         }
     }
 }
