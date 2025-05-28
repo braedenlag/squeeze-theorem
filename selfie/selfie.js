@@ -60,6 +60,10 @@ selfie.startup = () => {
             }
         }
     }
+
+    if(selfie.isMobile() && navigator.canShare) {
+        document.getElementById("downloadLink").innerHTML = `<i class="fa-solid fa-share-from-square"></i> share`;
+    }
 }
 
 selfie.saveFileAs = () => {
@@ -150,6 +154,9 @@ selfie.applyFilter = () => {
             break;
         case "upside-down":
             selfie.upsideDown();
+            break;
+        case "glitch":
+            selfie.glitch();
             break;
     }
 }
