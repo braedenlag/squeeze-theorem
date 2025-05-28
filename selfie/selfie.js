@@ -155,8 +155,8 @@ selfie.applyFilter = () => {
         case "upside-down":
             selfie.upsideDown();
             break;
-        case "glitch":
-            selfie.glitch();
+        case "reverse":
+            selfie.reverse();
             break;
     }
 }
@@ -222,6 +222,21 @@ selfie.upsideDown = () => {
         }
         selfie.gif.frames[i].data = new Uint8ClampedArray(data);;
     }
+}
+
+selfie.reverse = () => {
+    for(let i = 0; i < selfie.originalGif.frames.length; i++)
+    {
+        let data = new Uint8ClampedArray(selfie.originalGif.frames[i].data);
+        let oldData = new Uint8ClampedArray(selfie.originalGif.frames[selfie.originalGif.frames.length - 1 - i].data);
+        for (let j = 0; j < data.length; j += 4) {
+            data[j] = oldData[j]; // red
+            data[j + 1] = oldData[j + 1]; // green
+            data[j + 2] = oldData[j + 2]; // blue
+        }
+        selfie.gif.frames[i].data = new Uint8ClampedArray(data);;
+    }
+
 }
 
 selfie.drawFrame = () => {
