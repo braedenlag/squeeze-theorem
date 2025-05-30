@@ -6,9 +6,9 @@ image: images/pi.png
 ---
 
 \\(\pi\\) is a transcendental number, which means that it is not algebraic—we'll have to derive its value using an infinite series. Therefore, we'll use a 
-Taylor Series for some function \\(f(x)\\) to create a Taylor Polinomial that will help us approximate \\(\pi\\).
+Taylor Series for some function \\(f(x)\\) to create a Taylor Polynomial that will help us approximate \\(\pi\\).
 
-We can get the \\(nth\\) term of a Taylor Polinominal using the formula
+We can get the \\(nth\\) term of a Taylor Polynominal using the formula
 \\(\frac{f^{(n)}(a)}{n!}(x-a)^n\\). We can set \\(a = 0\\), which means we now have a Maclaurin Series that will make calculations easier. But we
 still need to choose our function \\(f(x)\\). There are some different options, but for ease of calculation \\(\tan^{-1}(x)\\) is a great choice.
 \\(\tan^{-1}(1)=\frac{\pi}{4}\\), and
