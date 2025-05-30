@@ -17,6 +17,7 @@ const iForDigit = (n) => {
 }
 
 const numAccurateDigit = (n) => {
+    if(n == 0) return -1;
     return Math.floor(-1 * Math.log10(((4) / (2*n + 3))) - 1);
 }
 
@@ -28,7 +29,7 @@ const main = () => {
 
     updatePi(parseInt(nValue.value), displayedDigits, piResult);
 
-    nValue.onchange = () => {
+    nValue.oninput = () => {
         //enforce min and max
         nValue.value = Math.min(nValue.value, nValue.max);
         nValue.value = Math.max(nValue.value, nValue.min);
@@ -38,7 +39,7 @@ const main = () => {
         updatePi(parseInt(nValue.value), displayedDigits, piResult);
         
     }
-    accurateDigits.onchange = () => {
+    accurateDigits.oninput = () => {
         //enforce min and max
         accurateDigits.value = Math.min(accurateDigits.value, accurateDigits.max);
         accurateDigits.value = Math.max(accurateDigits.value, accurateDigits.min);
