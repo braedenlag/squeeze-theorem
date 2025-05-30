@@ -1,7 +1,67 @@
-h1 {
+h1, h2, h3, h4, h5, h6 {
     font-family: formiga, sans-serif;
+}
+
+body, html {
+    font-family: "bouba-round-variable", sans-serif;
 }
 
 .wrapper {
     margin: 5em;
+}
+
+#pi-approx {
+    padding: 1em;
+    background-color: rgb(241, 241, 241);
+    #approximation {
+        font-size: 5em;
+        padding-bottom: 0.5em;
+    }
+
+    h1 {
+        font-size: 2em;
+        padding-bottom: 1em;
+        margin: 0;
+    }
+    #controls {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1em;
+        font-family: formiga, sans-serif;
+        font-size: 1em;
+
+        button {
+            font-family: formiga;
+            font-size: 1em;
+        }
+
+        input {
+            font-family: formiga, sans-serif;
+            text-align: center;
+            font-size: 1.5em;
+        }
+    }
+}
+
+@media only screen and (width <= 800px) and (height >= 400px) {
+    .mobile-hide {
+        display: none;
+    }
+
+    .wrapper {
+        margin: 1em;
+    }
+
+    #pi-approx {
+        #approximation {
+            font-size: 2.2em;
+        }
+    }
+}
+
+@media only screen and (width >= 800px) and (width <= 1200px) and (height >= 1000px) {
+    .mobile-hide {
+        display:none;
+    }
 }

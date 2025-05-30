@@ -29,24 +29,29 @@ main {
 }
 
 
-header, footer {
+header.site-header, footer {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
     font-size: 1.2em;
-    font-family: formiga, sans-serif;
     background: #f0f0f0;
     padding: 0.2em;
-    overflow: hidden;
     z-index: 10;
     box-sizing: border-box;
     flex-shrink: 0;
     max-width: 100vw;
+    overflow: hidden;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
 }
 
-header {
+header.site-header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: formiga, sans-serif;
+    justify-content: center;
+    align-items: center;
 
     img {
         height: 2em;
@@ -69,5 +74,43 @@ header {
     .right {
         justify-content: right;
         gap: 1em;
+    }
+}
+
+footer {
+    justify-content: space-around;
+    align-items: center;
+    padding: 2em;
+
+    .navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1em;
+    }
+
+    .footer-column {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+
+        p {
+            font-size: 0.8em;
+        }
+
+        h4 {
+            margin: 0;
+            padding-bottom: 0.5em;
+        }
+    }
+
+    .footer-hero {
+        width: 40%;
+    }
+
+    img {
+        width: 10em;
+        padding-bottom: 0.5em;
     }
 }
