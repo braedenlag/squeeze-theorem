@@ -3,6 +3,8 @@ layout: post
 summary: An approximation of \(\pi\) using a Taylor Series.
 title: A Delicious Pi Approximation
 image: images/pi.png
+type: recipie
+permalink: /recipies/pi
 ---
 
 \\(\pi\\) is a transcendental number, which means that it is not algebraic—we'll have to derive its value using an infinite series. Therefore, we'll use a 
