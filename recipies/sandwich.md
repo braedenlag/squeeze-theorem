@@ -34,8 +34,32 @@ When we find the limits of the outer functions, we can see that
 which, via the squeeze theorem, means that
 > \\(\lim\limits_{x\rarr{0}}x^2\sin(\frac{1}{x^2}) = 0\\)
 
-An interactive Desmos graph of the three equations is shown below. Notice how \\(f(x)\\) lies in between \\(g(x)\\) and \\(h(x)\\).
+A Desmos graph of the three equations is shown below. Notice how \\(f(x)\\) lies in between \\(g(x)\\) and \\(h(x)\\).
 
 <aside>
-<iframe src="https://www.desmos.com/calculator/yfcchuv2hx" title="Squeeze Theorem Desmos example graph" width="100%" height="500" frameborder="none">
+<img src="images\squeeze.png" width="100%" style="border: 2px solid #888">
 </aside>
+
+## A Second Example
+
+The first limit was pretty simple, so let's take a look at a different one. Let's consider the following limit:
+> \\(\lim\limits_{x\rarr{\infty}}\\frac{\cos^2({5x})}{3-2x}\\)
+
+\\(\lim\limits_{x\rarr{\infty}}\cos^2({5x})\\) does not exist, but we can use the squeeze theorem to find this limit. First, we know that
+> \\(0 \leq \cos^{2}(5x) \leq 1 \\) because the range of \\(\cos^2(5x)\\) is \\([0, 1]\\).
+
+Now we can divide all sides of the inequality by \\(3-2x\\). Since \\(x\rarr\infty\\), \\(3-2x\\) will be negative, which means our inequalties will switch. Therefore,
+> \\(\frac{0}{3-2x} \geq \cos^{2}(5x) \geq \frac{1}{3-2x} \\) <br><br>
+> \\(= \frac{1}{3-2x} \leq \cos^{2}(5x) \leq 0\\)
+
+We can take a look at the limits of the outside functions:
+
+> \\(\lim\limits_{x\rarr{\infty}}\frac{1}{3-2x} = 0 = \lim\limits_{x\rarr{\infty}}0\\)
+
+which, via the squeeze theorem, means that
+
+> \\(\lim\limits_{x\rarr{\infty}}\frac{cos^2(5x)}{3-2x} = 0\\)
+
+## Conclusion
+
+Whether your sandwich is made of meat and bread or functions and functions, we hope that you can make at least some use of the squeeze theorem. It's not always useful—but when it is, there's probably a couple of other methods you could use instead.
