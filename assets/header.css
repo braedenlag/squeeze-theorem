@@ -4,7 +4,7 @@ body, html {
     min-height: 100vh;
     box-sizing: border-box;
     --squeeze-red: #f22844;
-    --squeze-blue: #2a22d7;
+    --squeeze-blue: #2a22d7;
 }
 
 * {
@@ -39,7 +39,7 @@ header.site-header, footer {
         margin: 0;
         padding: 0;
         text-decoration: none;
-        color: var(--squeze-blue);
+        color: var(--squeeze-blue);
     }
 }
 
