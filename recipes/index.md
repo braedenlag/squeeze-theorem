@@ -4,7 +4,7 @@ title: hi
 ---
 
 <div class="posts-list">
-{% assign pages = site.pages | where_exp: 'page', 'page.type!=recipie' %}
+{% assign pages = site.pages | where_exp: 'page', 'page.type!=recipe' %}
 {% for page in pages %}
     <a href="{{page.url}}">
         <div class="post-item">

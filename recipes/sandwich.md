@@ -3,8 +3,8 @@ layout: post
 summary: Who knew the squeeze theorem could be useful?
 title: The Sandwich Theorem
 image: images/sandwich.png
-type: recipie
-permalink: /recipies/sandwich
+type: recipe
+permalink: /recipes/sandwich
 ---
 
 There comes a time in everyone's life where, no matter how hard we try, we just cannot evaluate \\(\lim\limits_{x\rarr0}x^2\sin(\frac{1}{x^2})\\). It is a gatekeeper to the echelons of calculus, yet, with the proper tools, the evaluation becomes quite simple.

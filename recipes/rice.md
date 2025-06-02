@@ -3,11 +3,11 @@ layout: post
 summary: It tastes just like home... work.
 title: Greasy BC Calc Fried Rice
 image: images/rice.png
-type: recipie
-permalink: /recipies/rice
+type: recipe
+permalink: /recipes/rice
 ---
 
-For years, we have been trying to nail the perfect **Greasy BC Calc Fried Rice Recipie**, but we've always been missing one special ingredient. But it isn't love; it's calculus. Although, what's the difference? We believe that like a derivative, a perfect recipie is something you have to derive. These steps, simple yet integral to the cooking process, will help you make a recipie that tests the limits of gastronomy.
+For years, we have been trying to nail the perfect **Greasy BC Calc Fried Rice recipe**, but we've always been missing one special ingredient. But it isn't love; it's calculus. Although, what's the difference? We believe that like a derivative, a perfect recipe is something you have to derive. These steps, simple yet integral to the cooking process, will help you make a recipe that tests the limits of gastronomy.
 
 ### Ingredients
 
@@ -44,5 +44,5 @@ This gives us a new approximate \\(x\\) and \\(y\\) coordinate of \\((1, 3 + \ln
 > \\(\frac{dy}{dx} = 1^2 + \ln(3 + 3\ln 3) = 1 + \ln(3 + 3\ln 3) \approx 2.411\\) <br>
 > \\(f(2) \approx f(1) + 2.411(1) \approx 6.510\\)
 
-We hope you finally have some closure from the Free Response questions on the AP Test. As for the rest of the recipie, it's left as an exercise for the reader.
+We hope you finally have some closure from the Free Response questions on the AP Test. As for the rest of the recipe, it's left as an exercise for the reader.
 
