@@ -31,6 +31,6 @@ Finally, integration shows that
 > \\(A = \frac{5\pi}{2}\\) <br>
 
 We can prove our answer using the ellipse formula, \\(A=\pi ab\\). We can see that
-> \\(A = \pi \frac{5}{4}(2) = \frac{5\pi}{2} = A = \frac{1}{2} \int_{0}^{2\pi} \frac{5}{2}\cos^{2}t+\frac{5}{2}\sin^{2}t\, dt\\)
+> \\(A = \pi \frac{5}{4}(2) = \frac{5\pi}{2} = \frac{1}{2} \int_{0}^{2\pi} \frac{5}{2}\cos^{2}t+\frac{5}{2}\sin^{2}t\, dt\\)
 
 It may not be as useful as the optimal taco bite, or as cool as a calculus word search, but if you are making these kinds of cookies, you'll know exactly how much frosting to use.
