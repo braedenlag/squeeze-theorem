@@ -2,4 +2,43 @@
 layout: default
 ---
 
-<h1>more than just a theorem.</h1>
+<div id="home">
+<div class="home-wrapper">
+    <h1>more than just a <span style="color: var(--squeeze-red)">theorem</span>.</h1>
+
+    <h2>A Brief History</h2>
+    <ul>
+        <li><b>500 AD</b> — Modern Arabic Numerals invented.</li>
+        <li><b>1660's</b> — Calculus invented separately by Sir Isaac Newton and Gottfried Leibniz.</li>
+        <li><b>1800's</b> — Squeeze Theorem formulated in modern terms by Carl Friedrich Gauss.</li>
+        <li><b>2010</b> — The first Air Fryer was invented.</li>
+        <li><b>September 24, 2024</b> — We learn the squeeze theorem in class.</li>
+        <li><b>June 4th, 2025</b> — <span style="color: var(--squeeze-red)">www.squeezetheorem.com</span> is finished.</li>
+    </ul>
+</div>
+</div>
+
+<style>
+    body {
+        background-image: url("/graph.webp");
+        background-repeat: repeat;
+        background-size: 80%;
+        animation: scroll 10s infinite linear;
+    }
+
+    @keyframes scroll {
+        from {background-position: 0%}
+        to {background-position: 100%}
+    }
+
+    @media only screen and (width <= 1200px) {
+        body {
+            animation: none;
+            background-size: 200%;
+        }
+
+        #home h1 {
+            font-size: 3em;
+        }
+    }
+</style>

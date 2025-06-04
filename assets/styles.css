@@ -26,6 +26,11 @@ blockquote {
     padding: 1rem;
 }
 
+ul {
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+
 .post-title {
     margin-bottom: 0;
 }
@@ -44,12 +49,26 @@ blockquote {
         width: 100%;
     }
 }
+.home-wrapper {
+    margin-left: 10%;
+    margin-right: 10%;
+
+    h1 {
+        font-size: 7em;
+        color: #333;
+    }
+
+    h2 {
+        font-size: 2em;
+        color: #333;
+    }
+}
 
 .posts-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-content: center;
 
     a {
