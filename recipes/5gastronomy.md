@@ -1,7 +1,7 @@
 ---
 layout: post
 summary: Basically, everything else.
-title: Gatronomical Delights
+title: Gastronomical Delights
 image: images/duck.png
 type: recipe
 permalink: /recipes/gastronomy
