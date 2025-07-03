@@ -157,6 +157,19 @@ h1 {
         display: none;
     }
 
+    #white-overlay {
+        opacity: 0.95;
+        background-color: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        pointer-events: none;
+        z-index: 1000;
+    }
+
     @media only screen and (width <= 800px) and (height >= 400px) {
         .column {
             width: 100%;

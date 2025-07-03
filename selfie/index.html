@@ -12,6 +12,7 @@
 </head>
 <body>
     <div id="selfie-gif">
+        <div id="white-overlay"  style="visibility: hidden;"></div>
         <h1>create a selfie gif</h1>
         <div class="row">
             <div class="column mobile-hide">&nbsp;</div>
@@ -40,7 +41,8 @@
                 <option value="reverse">&#xf04a; reverse</option>
             </select>
             <button id="downloadLink" disabled><i class="fa-solid fa-download"></i> download</button>
-            <button id="stopSelfie" disabled><i class="fa-solid fa-xmark"></i> camera off</button>
+            <button id="stopSelfie" disabled><i class="fa-solid fa-video-slash"></i></button>
+            <button id="flashOverlay"><i class="fa-solid fa-bolt-lightning"></i></button>
         </div>
         <video id="cameraView"></video>
     </div>

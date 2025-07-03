@@ -9,6 +9,7 @@ selfie.startup = () => {
     selfie.octx = selfie.overlay.getContext("2d", { willReadFrequently: true });
     document.getElementById("stopSelfie").onclick = selfie.removeCamera;
     document.getElementById("downloadLink").onclick = selfie.saveFileAs;
+    document.getElementById("flashOverlay").onclick = selfie.toggleFlashOverlay;
     
     selfie.frame = 0;
     selfie.gifLength = 31; //number of frames
@@ -91,6 +92,14 @@ selfie.downloadFile = () => {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+}
+
+selfie.toggleFlashOverlay = () => {
+    if(document.getElementById("white-overlay").style.visibility == "hidden") {
+        document.getElementById("white-overlay").style.visibility = "visible";
+    } else {
+        document.getElementById("white-overlay").style.visibility = "hidden";
+    }
 }
 
 selfie.isMobile = () => {
