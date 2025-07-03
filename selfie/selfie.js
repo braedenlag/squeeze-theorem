@@ -41,6 +41,7 @@ selfie.startup = () => {
         selfie.octx.clearRect(0, 0, selfie.overlay.width, selfie.overlay.height);
         selfie.canvas.setAttribute("data-processing", "false");
         document.getElementById("loadingcontainer").style.visibility = "hidden";
+        document.getElementById("white-overlay").style.visibility = "hidden";
         selfie.gif.running = false;
     });
 
